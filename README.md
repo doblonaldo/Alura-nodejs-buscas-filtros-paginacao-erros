@@ -2,7 +2,7 @@
 Estudo sobre API, tratamento de erros, Middlewares no Express, validação de dados informados pelo Front, buscas e filtros e por fim Paginação.
 
 
-####Tasks
+#### Tasks
 
 - [ ] Refatorar códigos dos Controllers
     - [ ] autoresController
