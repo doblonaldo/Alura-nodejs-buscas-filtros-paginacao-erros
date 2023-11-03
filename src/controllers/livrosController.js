@@ -1,3 +1,4 @@
+//import { autores } from "../models/Autor.js";
 import livros from "../models/Livro.js";
 
 class LivroController {
@@ -26,23 +27,13 @@ class LivroController {
     static cadastrarLivro = async (req, res) => {
         try {
             let livro = new livros(req.body);
+    
             const livroResultado = await livro.save();
+    
             res.status(201).send(livroResultado.toJSON());
-        } catch (error) {
-            res.status(500).send({message: `${error.message} - falha ao cadastrar livro.`});
-
+        } catch (erro) {
+            res.status(500).send({message: `${erro.message} - falha ao cadastrar livro.`});
         }
-       
-       
-        // let livro = new livros(req.body);
-
-        // livro.save((err) => {
-
-        //     if(err) {
-        //     } else {
-        //         
-        //     }
-        // });
     };
 
     static atualizarLivro = async (req, res) => {
