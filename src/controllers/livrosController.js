@@ -1,6 +1,6 @@
 //import { autores } from "../models/Autor.js";
 import NaoEncontrado from "../erros/NaoEncontrado.js";
-import livros from "../models/Livro.js";
+import { livros } from "../models/index.js";
 
 class LivroController {
 
@@ -78,11 +78,15 @@ class LivroController {
             next(erro);
         }
     };
-    static listarLivroPorEditora = async (req, res,next) => {
+    static listarLivroPorFiltro = async (req, res,next) => {
         try {
-            const editora = req.query.editora;
-    
-            const livrosResultado = await livros.find({"editora": editora});
+            const {editora,titulo} = req.query;
+            //dessa forma deixa mais dinamico, só usa no filtro caso realmente ele exista
+            const busca = {};
+            if(editora) busca.editora = editora;
+            if(titulo) busca.titulo =  titulo;
+
+            const livrosResultado = await livros.find(busca);
     
             res.status(200).send(livrosResultado);
         } catch (error) {
