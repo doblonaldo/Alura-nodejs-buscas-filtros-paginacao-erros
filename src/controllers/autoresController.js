@@ -44,9 +44,13 @@ class AutorController {
         try {
             const id = req.params.id;
             const atualizaAutor = req.body;
-            console.log(atualizaAutor);
-            await autores.findByIdAndUpdate(id,atualizaAutor);
-            res.status(200).send({message: "Autor atualizado com sucesso",autor:atualizaAutor});
+            // console.log(atualizaAutor);
+            const autorEncontrado = await autores.findByIdAndUpdate(id,atualizaAutor);
+            if(autorEncontrado!==null){
+                res.status(200).send({message: "Autor atualizado com sucesso",autor:atualizaAutor});
+            }else{
+                next(new NaoEncontrado("Id do Autor não localizado."));
+            }
         } catch (error) {
             next(error);
             // res.status(500).send({message: error.message});
@@ -59,8 +63,13 @@ class AutorController {
         try {
             const id = req.params.id;
             console.log(id);
-            await autores.findByIdAndDelete(id);
-            res.status(200).send({message: "Autor removido com sucesso"});
+            const autorEncontrado = await autores.findByIdAndDelete(id);
+            console.log(autorEncontrado);
+            if(autorEncontrado!==null){
+                res.status(200).send({message: "Autor removido com sucesso"});
+            }else{
+                next(new NaoEncontrado("Id do Autor não localizado."));
+            }
         } catch (error) {
             next(error);
             // res.status(500).send({message: error.message});
