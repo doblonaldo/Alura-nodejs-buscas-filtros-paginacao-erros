@@ -4,7 +4,7 @@ Estudo sobre API, tratamento de erros, Middlewares no Express, validação de da
 
 #### Tasks
 
-- [ ] Refatorar códigos dos Controllers
+- [X] Refatorar códigos dos Controllers
     - [X] autoresController
-    - [ ] livroController
-            
+    - [X] livroController
+- [x] Refatorar erros     
